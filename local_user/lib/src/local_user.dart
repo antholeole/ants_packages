@@ -5,29 +5,29 @@ import 'package:uuid_type_next/uuid_type_next.dart';
 
 class LocalUser extends ChangeNotifier
     implements ValueListenable<LocalUserState> {
-  final LocalSingleton<String> _localRefreshToken = LocalSingleton(
-    id: 'refresh_token',
-    documentType: DocumentType.secure,
-  );
-  final LocalSingleton<String> _localUserId = LocalSingleton(
-    id: 'user_id',
-    documentType: DocumentType.secure,
-  );
+  static const String _uuidKey = 'userId';
+  static const String _refreshTokenKey = 'refreshToken';
+
+  final LocalSingleton<LocalUserLoggedInState> _localUser = LocalSingleton(
+      id: 'local_user',
+      documentType: DocumentType.secure,
+      toJson: (localUser) => {
+            _uuidKey: localUser.userId.toString(),
+            _refreshTokenKey: localUser.refreshToken
+          },
+      fromJson: (json) => LocalUserLoggedInState(
+          UuidType(json[_uuidKey]), json[_refreshTokenKey]));
 
   LocalUserState _state = LocalUserLoadingState();
 
   /// begins an async process that checks if the user is logged in or not.
   Future<void> determineState() async {
-    final tokens =
-        await Future.wait([_localRefreshToken.read(), _localUserId.read()]);
+    final maybeLoggedInState = await _localUser.read();
 
-    final refreshToken = tokens[0];
-    final userId = tokens[1];
-
-    if (refreshToken == null || userId == null) {
+    if (maybeLoggedInState == null) {
       logOut();
     } else {
-      logIn(UuidType(userId), refreshToken);
+      logIn(maybeLoggedInState.userId, maybeLoggedInState.refreshToken);
     }
   }
 
@@ -36,11 +36,13 @@ class LocalUser extends ChangeNotifier
 
   K? maybeOn<K>({
     K Function(Exception? e)? loggedOut,
-    K Function(UuidType userId)? loggedIn,
+    K Function(UuidType userId, String refreshToken)? loggedIn,
     K Function()? loading,
   }) {
     if (_state is LocalUserLoggedInState && loggedIn != null) {
-      return loggedIn((_state as LocalUserLoggedInState).userId);
+      final LocalUserLoggedInState loggedInState =
+          _state as LocalUserLoggedInState;
+      return loggedIn(loggedInState.userId, loggedInState.refreshToken);
     }
 
     if (_state is LocalUserLoggedOutState && loggedOut != null) {
@@ -56,11 +58,13 @@ class LocalUser extends ChangeNotifier
 
   K on<K>({
     required K Function(Exception? e) loggedOut,
-    required K Function(UuidType) loggedIn,
+    required K Function(UuidType userId, String refreshToken) loggedIn,
     required K Function() loading,
   }) {
     if (_state is LocalUserLoggedInState) {
-      return loggedIn((_state as LocalUserLoggedInState).userId);
+      final LocalUserLoggedInState loggedInState =
+          _state as LocalUserLoggedInState;
+      return loggedIn(loggedInState.userId, loggedInState.refreshToken);
     }
 
     if (_state is LocalUserLoggedOutState) {
@@ -73,12 +77,9 @@ class LocalUser extends ChangeNotifier
   Future<void> logIn(UuidType userId, String refreshToken) async {
     //don't notify if we're already logged
     final shouldNotify = _state is LocalUserLoggedInState;
-    _state = LocalUserLoggedInState(userId);
+    _state = LocalUserLoggedInState(userId, refreshToken);
 
-    await Future.wait([
-      _localRefreshToken.write(refreshToken),
-      _localUserId.write(userId.toString())
-    ]);
+    await _localUser.write(LocalUserLoggedInState(userId, refreshToken));
 
     if (shouldNotify) {
       notifyListeners();
@@ -91,17 +92,9 @@ class LocalUser extends ChangeNotifier
       return;
     }
 
-    await Future.wait([_localRefreshToken.delete(), _localUserId.delete()]);
+    await _localUser.delete();
 
     _state = LocalUserLoggedOutState(withException: withException);
     notifyListeners();
-  }
-
-  Future<String?> get refreshToken {
-    if (_state is LocalUserLoggedInState) {
-      return _localRefreshToken.read();
-    } else {
-      return Future.value(null);
-    }
   }
 }
