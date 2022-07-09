@@ -1,7 +1,7 @@
 name: local_value
 description: A simple abstraction to persist data in the local file system.
-version: 1.1.1
-repository: https://github.com/antholeole/local_value
+version: 1.1.2
+repository: https://github.com/antholeole/ants_packages/tree/main/local_data_manager
 
 environment:
   sdk: ">=2.15.1 <3.0.0"

@@ -1,3 +1,7 @@
+## 1.1.2 
+
+* Changed the homepage location, so pub.dev can find local_value's new home.
+
 ## 1.1.1
 
 * Fixed a bug where file data container would not create the file before attempting a write.
