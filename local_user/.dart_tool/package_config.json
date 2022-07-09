@@ -470,10 +470,10 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "uuid_type",
-      "rootUri": "../../uuid_type",
+      "name": "uuid_type_next",
+      "rootUri": "../../uuid_type_next",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.17"
     },
     {
       "name": "vector_math",
@@ -530,7 +530,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-06-05T03:57:48.643081Z",
+  "generated": "2022-07-09T03:13:36.883040Z",
   "generator": "pub",
   "generatorVersion": "2.18.0-125.0.dev"
 }

@@ -1,6 +1,6 @@
 name: uuid_type_next
 description: A UUID library with Json and built_value converters.
-homepage: https://github.com/antholeole/uuid_type_next
+homepage: https://github.com/antholeole/ants_packages/tree/main/uuid_type_next
 version: 1.0.0
 
 environment:

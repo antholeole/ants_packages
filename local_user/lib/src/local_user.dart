@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:local_user/src/local_user_state.dart';
 import 'package:local_value/local_value.dart';
-import 'package:uuid_type/uuid_type.dart';
+import 'package:uuid_type_next/uuid_type_next.dart';
 
 class LocalUser extends ChangeNotifier
     implements ValueListenable<LocalUserState> {

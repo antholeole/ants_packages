@@ -1,4 +1,4 @@
-import 'package:uuid_type/uuid_type.dart';
+import 'package:uuid_type_next/uuid_type_next.dart';
 
 abstract class LocalUserState {
   const LocalUserState();
