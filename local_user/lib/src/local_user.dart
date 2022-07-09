@@ -36,13 +36,11 @@ class LocalUser extends ChangeNotifier
 
   K? maybeOn<K>({
     K Function(Exception? e)? loggedOut,
-    K Function(UuidType userId, String refreshToken)? loggedIn,
+    K Function(LocalUserLoggedInState)? loggedIn,
     K Function()? loading,
   }) {
     if (_state is LocalUserLoggedInState && loggedIn != null) {
-      final LocalUserLoggedInState loggedInState =
-          _state as LocalUserLoggedInState;
-      return loggedIn(loggedInState.userId, loggedInState.refreshToken);
+      return loggedIn(_state as LocalUserLoggedInState);
     }
 
     if (_state is LocalUserLoggedOutState && loggedOut != null) {
@@ -58,13 +56,11 @@ class LocalUser extends ChangeNotifier
 
   K on<K>({
     required K Function(Exception? e) loggedOut,
-    required K Function(UuidType userId, String refreshToken) loggedIn,
+    required K Function(LocalUserLoggedInState) loggedIn,
     required K Function() loading,
   }) {
     if (_state is LocalUserLoggedInState) {
-      final LocalUserLoggedInState loggedInState =
-          _state as LocalUserLoggedInState;
-      return loggedIn(loggedInState.userId, loggedInState.refreshToken);
+      return loggedIn(_state as LocalUserLoggedInState);
     }
 
     if (_state is LocalUserLoggedOutState) {
