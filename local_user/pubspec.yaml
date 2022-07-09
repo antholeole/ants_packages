@@ -11,7 +11,9 @@ dev_dependencies:
 dependencies: 
   local_value: ^1.1.1
   uuid_type_next:
-    path: ../uuid_type_next
+    git:
+      url: https://github.com/antholeole/ants_packages.git
+      path: uuid_type_next
   flutter:
     sdk: flutter
     version: ^0.0.0

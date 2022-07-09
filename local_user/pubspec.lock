@@ -544,9 +544,11 @@ packages:
   uuid_type_next:
     dependency: "direct main"
     description:
-      path: "../uuid_type_next"
-      relative: true
-    source: path
+      path: uuid_type_next
+      ref: HEAD
+      resolved-ref: c52eaf937cd95cd5be1c0a8e8dc7ac4577b1be66
+      url: "https://github.com/antholeole/ants_packages.git"
+    source: git
     version: "1.0.0"
   vector_math:
     dependency: transitive

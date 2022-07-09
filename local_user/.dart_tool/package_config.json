@@ -471,7 +471,7 @@
     },
     {
       "name": "uuid_type_next",
-      "rootUri": "../../uuid_type_next",
+      "rootUri": "file:///Users/anthony/.pub-cache/git/ants_packages-c52eaf937cd95cd5be1c0a8e8dc7ac4577b1be66/uuid_type_next",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -530,7 +530,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-07-09T03:13:36.883040Z",
+  "generated": "2022-07-09T03:24:49.520295Z",
   "generator": "pub",
   "generatorVersion": "2.18.0-125.0.dev"
 }
