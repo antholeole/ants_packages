@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flutter Test",
+            "type": "flutter",
+            "command": "flutter",
+            "args": ["test", "--coverage"],
+        },
+        {
+            "label": "View Cov",
+            "type": "shell",
+            "command": "genhtml",
+            "dependsOn": "Flutter Test",
+            "group": "test",
+            "problemMatcher": [],
+            "args": ["coverage/lcov.info", "--output=coverage/html", "&&", "open", "coverage/html/index.html"]
+        }
+    ]
+}
