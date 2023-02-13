@@ -1,4 +1,8 @@
-## 1.1.2 
+## 1.2.0
+
+* Updated dependencies. (Minor due to major update of dependencies)
+
+## 1.1.2
 
 * Changed the homepage location, so pub.dev can find local_value's new home.
 
@@ -12,7 +16,7 @@
 
 ## 1.0.0
 
-* inital stable release. 
+* inital stable release.
 * fully tested API.
 
 ## 0.0.2
