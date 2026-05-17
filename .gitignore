@@ -1,1 +1,11 @@
 .DS_store
+
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Nix
+result
+result-*
+.direnv/
