@@ -8,8 +8,8 @@ class MockToaster extends Mock implements Toaster {
   static Widget mount(
       {Key? key, required Widget child, required Toaster toaster}) {
     return ToasterStateFinder(
-      child: child,
       toasterState: toaster,
+      child: child,
     );
   }
 }

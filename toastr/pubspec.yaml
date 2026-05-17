@@ -15,8 +15,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
-  mocktail: ^0.3.0
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.5
   fake_async: ^1.2.0
 
 
