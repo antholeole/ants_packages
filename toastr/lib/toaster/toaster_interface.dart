@@ -54,13 +54,13 @@ abstract class Toaster {
   static Widget mount(
       {Key? key, required Widget child, ToastBuilder? toastBuilder}) {
     return ToasterDisplay(
+      key: key,
       toastBuilder: toastBuilder ??
           (toast, animation) => DefaultToast(
                 toast: toast,
                 animation: animation,
               ),
       child: child,
-      key: key,
     );
   }
 

@@ -9,8 +9,8 @@ environment:
 dependencies:
   built_value: ^8.2.3
   json_annotation: ^4.5.0
-  uuid: ^3.0.6
+  uuid: ^4.5.3
 
 dev_dependencies:
-  lints: ^2.0.0
+  lints: ^6.1.0
   test: ^1.16.0
